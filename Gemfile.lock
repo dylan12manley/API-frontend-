@@ -42,9 +42,17 @@ GEM
       globalid (>= 0.3.6)
     activemodel (6.0.2.1)
       activesupport (= 6.0.2.1)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (6.0.2.1)
       activemodel (= 6.0.2.1)
       activesupport (= 6.0.2.1)
+    activeresource (5.1.0)
+      activemodel (>= 5.0, < 7)
+      activemodel-serializers-xml (~> 1.0)
+      activesupport (>= 5.0, < 7)
     activestorage (6.0.2.1)
       actionpack (= 6.0.2.1)
       activejob (= 6.0.2.1)
@@ -67,10 +75,18 @@ GEM
     concurrent-ruby (1.1.5)
     crass (1.0.6)
     diff-lcs (1.3)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
     erubi (1.9.0)
     ffi (1.12.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    http-accept (1.7.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    httparty (0.17.3)
+      mime-types (~> 3.0)
+      multi_xml (>= 0.5.2)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     jbuilder (2.9.1)
@@ -89,11 +105,16 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (0.9.2)
+    mime-types (3.3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2019.1009)
     mimemagic (0.3.3)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
     msgpack (1.3.1)
+    multi_xml (0.6.0)
+    netrc (0.11.0)
     nio4r (2.5.2)
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
@@ -139,6 +160,11 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -190,6 +216,9 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.6)
     web-console (4.0.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -208,15 +237,22 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activeresource
   bootsnap (>= 1.4.2)
   byebug
+  http-accept
+  http-cookie
+  httparty
   jbuilder (~> 2.7)
   launchy
   listen (>= 3.0.5, < 3.2)
+  mime-types
+  netrc
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.1)
+  rest-client
   rspec
   rspec-rails
   sass-rails (>= 6)

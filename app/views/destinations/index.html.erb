@@ -1,0 +1,14 @@
+<h1>Destinations</h1>
+
+<% if @destinations.any? %>
+<ul>
+  <% @destinations.each do |r|%>
+  <li><%= link_to r.fetch("country"), destination_path(r.fetch("id")) %></li>
+  <% end %>
+</ul>
+
+<% else %>
+<p>There are no destinations yet.</p>
+<% end %>
+
+<p><%= link_to "Create new destination", new_destination_path %></p
