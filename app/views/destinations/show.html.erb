@@ -1,16 +1,15 @@
 <h1>Destination Info:</h1>
-<ul>
-  <li><%= @destinations.fetch("country")%> </li>
-  <li><%= @destinations.fetch("city") %> </li>
-</ul>
+<h2><ul>
+  <li><%= @destination.fetch("country")%> </li>
+  <li><%= @destination.fetch("city") %> </li>
+</ul></h2>
 
-<% if @destinations.reviews.fetch("id").any? %>
+<% if @reviews.any? %>
 <h4>Here are the reviews for this rating:</h4>
-
 <% @reviews.each do |review| %>
 <ul>
   <li>
-    <%= link_to review.fetch("body"), destination_review_path("destination_id") %>
+    <%= link_to review.fetch("body"), "destinations/#{params[:id]}/reviews/#{review.fetch("id")}" %>
   </li>
 </ul>
 <% end %>
@@ -18,11 +17,11 @@
 <p>No reviews are listed for this destination.</p>
 <% end %>
 
-<p><%= link_to "Add a review", new_destination_review_path(@destination) %></p>
+<p><%= link_to "Add a review", "destinations/#{params[:id]}/reviews/new" %></p>
 
-<p><%= link_to "Edit", edit_destination_path(@destination) %></p>
+<p><%= link_to "Edit", "destinations/#{params[:id]}/edit" %></p>
 
-<p><%= link_to "Delete destination", destination_path(@destination),
+<p><%= link_to "Delete destination", "destinations/#{params[:id]}",
   :data => {:confirm => "Are you sure?",
   :method => "delete"} %></p>
   <p><%= link_to "Return to destinations", destinations_path %></p>

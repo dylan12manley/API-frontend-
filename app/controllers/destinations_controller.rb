@@ -12,18 +12,19 @@ class DestinationsController < ApplicationController
 
   def show
     response = RestClient.get ("http://localhost:3001/destinations/#{params[:id]}")
-    @destinations = response.body
-    @destinations = JSON.parse(@destinations)
-    review = RestClient.get ("http://localhost:3001/destinations/#{params[:destination_id]}/reviews")
-    @reviews = review.body
+    @destination = response.body
+    @destination = JSON.parse(@destination)
+    response= RestClient.get ("http://localhost:3001/destinations/#{params[:id]}/reviews")
+    @reviews = response.body
     @reviews = JSON.parse(@reviews)
     render :show
   end
 
   def new
-    response = RestClient.get('destinations/new')
-    @destinations = response.body
-    @destinations = JSON.parse(@destinations)
+    # response = RestClient.get("http://localhost:3001/destinations/new")
+    # @destination = response.body
+    # @destination = JSON.parse(@destination)
+    @destination = Destination.new(:country => '', :city => '', :spot => '')
     render :new
   end
 
