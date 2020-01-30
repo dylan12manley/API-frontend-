@@ -21,23 +21,12 @@ class DestinationsController < ApplicationController
   end
 
   def new
-    # response = RestClient.get("http://localhost:3001/destinations/new")
-    # @destination = response.body
-    # @destination = JSON.parse(@destination)
-    @destination = Destination.new(:country => '', :city => '', :spot => '')
     render :new
   end
 
   def create
-    response = RestClient.post('destinations/')
-    @destinations = response.body
-    @destinations = JSON.parse(@destinations)
-    @destination = Destination.new(destination_params)
-    if @destination.save
-      redirect_to destinations_path
-    else
-      render :new
-    end
+    RestClient.post "http://localhost:3001/destinations", {country: "#{params[:country]}", city: "#{params[:city]}", spot: "#{params[:spot]}"}
+    redirect_to destinations_path
   end
 
   def edit

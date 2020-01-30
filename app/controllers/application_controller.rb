@@ -1,4 +1,4 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :null_session
-  resources :destinations
+  # protect_from_forgery with: :null_session
+  # resources :destinations
 end
