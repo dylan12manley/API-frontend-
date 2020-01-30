@@ -1,0 +1,11 @@
+<h1>Edit a Spy Destination</h1>
+
+<%= form_tag("/destinations/#{params[:id]}", method: "patch") do %>
+  <%= label_tag(:country, "country") %>
+  <%= text_field_tag(:country) %>
+  <%= label_tag(:city, "city") %>
+  <%= text_field_tag(:city) %>
+  <%= label_tag(:spot, "spot") %>
+  <%= text_field_tag(:spot) %>
+  <%= submit_tag("Update")%>
+<% end %>

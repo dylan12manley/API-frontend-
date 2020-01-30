@@ -1,3 +1,5 @@
+<div class="container">
+
 <h1>Destination Info:</h1>
 <h2><ul>
   <li><%= @destination.fetch("country")%> </li>
@@ -17,11 +19,12 @@
 <p>No reviews are listed for this destination.</p>
 <% end %>
 
-<p><%= link_to "Add a review", "destinations/#{params[:id]}/reviews/new" %></p>
+<p><%= link_to "Add a review", "#{params[:id]}/reviews/new" %></p>
 
-<p><%= link_to "Edit", "destinations/#{params[:id]}/edit" %></p>
+<p><%= link_to "Edit", "#{params[:id]}/edit" %></p>
 
-<p><%= link_to "Delete destination", "destinations/#{params[:id]}",
+<p><%= link_to "Delete destination", "#{params[:id]}",
   :data => {:confirm => "Are you sure?",
   :method => "delete"} %></p>
   <p><%= link_to "Return to destinations", destinations_path %></p>
+</div>

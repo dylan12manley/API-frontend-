@@ -2,6 +2,7 @@ require 'rest-client'
 require 'json'
 
 class DestinationsController < ApplicationController
+  # include Destinations_fetcher
 
   def index
     response = RestClient.get('http://localhost:3001/destinations')
@@ -30,35 +31,16 @@ class DestinationsController < ApplicationController
   end
 
   def edit
-    response = RestClient.get('destinations/:id/edit')
-    @destinations = response.body
-    @destinations = JSON.parse(@destinations)
-    @destination = Destination.new(destination_params)
-    @destination = Destination.find(params[:id])
     render :edit
   end
 
-
   def update
-    response = RestClient.patch('destinations/:id')
-    @destinations = response.body
-    @destinations = JSON.parse(@destinations)
-    @destination = Destination.new(destination_params)
-    @destination= Destination.find(params[:id])
-    if @destination.update(destination_params)
-      redirect_to destinations_path
-    else
-      render :edit
-    end
+    RestClient.patch "http://localhost:3001/destinations/#{params[:id]}", {country: "#{params[:country]}", city: "#{params[:city]}", spot: "#{params[:spot]}"}
+    redirect_to destinations_path
   end
 
   def destroy
-    response = RestClient.delete('destinations/:')
-    @destinations = response.body
-    @destinations = JSON.parse(@destinations)
-    @destination = Destination.new(destination_params)
-    @destination = Destination.find(params[:id])
-    @destination.destroy
+    RestClient.delete("http://localhost:3001/destinations/#{params[:id]}")
     redirect_to destinations_path
   end
 
@@ -66,5 +48,4 @@ class DestinationsController < ApplicationController
   def destination_params
     params.require(:destination).permit(:country, :city, :spot)
   end
-
 end
